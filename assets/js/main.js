@@ -107,13 +107,23 @@ const icons = [
 ];
 
 icons.forEach(icon => {
+    if (icon.type === 'animal') {
+        icon.color = 'blue'
+    }else if (icon.type === 'vegetable') {
+        icon.color = 'orange'
+    }else {
+        icon.color = 'purple'
+    }
+
     document.querySelector('.icons').insertAdjacentHTML('beforeend',
         `
-        <div>
-            <i class="${icon.family} ${icon.prefix}${icon.name}"></i>
+        <div class="icon_card">
+            <i class="${icon.family} ${icon.prefix}${icon.name}" style="color: ${icon.color}"></i>
             <span>${icon.name}</span>
         </div>
 
         `
         );
 })
+
+console.log(icons);

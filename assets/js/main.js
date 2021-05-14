@@ -106,6 +106,9 @@ const icons = [
 	}
 ];
 
+/* Milestone 1:
+Partendo dalla seguente struttura dati , mostriamo in pagina tutte le icone disponibili come da layout.
+Milestone 2: Coloriamo le icone per tipo */
 icons.forEach(icon => {
     if (icon.type === 'animal') {
         icon.color = 'blue'
@@ -123,7 +126,35 @@ icons.forEach(icon => {
         </div>
 
         `
-        );
+    );	
 })
 
-console.log(icons);
+//Milestone 3: Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+const selectEl = document.getElementById('type');
+selectEl.addEventListener('change', () => {
+	document.querySelector('.icons').innerHTML = '';
+	icons.forEach(icon => {
+		if (selectEl.value === icon.type) {
+			document.querySelector('.icons').insertAdjacentHTML('beforeend',
+				`
+				<div class="icon_card">
+					<i class="${icon.family} ${icon.prefix}${icon.name}" style="color: ${icon.color}"></i>
+					<span>${icon.name}</span>
+				</div>
+		
+				`
+			);
+				
+		}else if (selectEl.value === 'all'){
+			document.querySelector('.icons').insertAdjacentHTML('beforeend',
+        	`
+        	<div class="icon_card">
+            	<i class="${icon.family} ${icon.prefix}${icon.name}" style="color: ${icon.color}"></i>
+            	<span>${icon.name}</span>
+        	</div>
+
+        	`
+    		);
+		}
+	})		
+})
